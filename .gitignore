@@ -1,0 +1,31 @@
+# Python-specific
+__pycache__/
+*.pyc
+*.pyo
+
+# IDE-specific
+.idea/
+
+# Dependency directories
+venv/
+env/
+
+# Compiled Python files
+*.pyc
+
+# Configuration files
+*.ini
+*.cfg
+
+# Log files
+*.log
+
+# Temporary files
+*.tmp
+
+# Ignore CSV files in the output folder
+output/*.csv
+# Ignore all files in the config folder except those ending with "sample.json"
+config/*
+!config/*sample.json
+
