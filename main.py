@@ -3,6 +3,8 @@ from src.google_search_console import fetch_gsc_data
 from src.utils import save_to_csv, get_valid_days, get_threshold_percentage
 from src.isolated_keywords import filter_keywords
 from src.keyword_everywhere import extract_keyword_data
+from src.intent_classification import process_keyword_metrics
+from src.benchmark_test import analyze_and_filter_keywords
 
 
 # from src.keyword_analysis import process_keywords, fetch_keyword_data, determine_intent
@@ -25,16 +27,12 @@ def main():
     # # Step 4: Fetch keyword metrics using an Keywords Everywhere API
     keyword_metrics = extract_keyword_data(isolated_keywords_df)
 
-    print('keyword everywhere data saved')
-
     # # Step 5: Determine keyword intent based on the metrics
-    # keyword_intents = determine_intent(keyword_metrics)
-    # save_to_csv(keyword_intents, 'keyword_intents.csv')
-    #
+    keywords_with_intent = process_keyword_metrics(keyword_metrics)
+
     # # Step 6: Compare keyword metrics against benchmarks
-    # benchmarked_data = compare_with_benchmark(keyword_intents)
-    # save_to_csv(benchmarked_data, 'benchmarked_keywords.csv')
-    #
+    benchmarked_data = analyze_and_filter_keywords(keywords_with_intent)
+
     # # Step 7: Scrape titles from URLs found in the Google Search Console data
     # titles = scrape_titles(processed_data)
     # save_to_csv(titles, 'scraped_titles.csv')
