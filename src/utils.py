@@ -5,7 +5,6 @@
 import os
 import json
 import pandas as pd
-import logging
 
 OUTPUT_FOLDER = 'output'
 
