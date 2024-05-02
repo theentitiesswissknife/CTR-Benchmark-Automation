@@ -6,9 +6,6 @@
 import re
 
 
-
-import re
-
 def is_valid_domain(domain):
     """
     Checks if the provided string is a valid domain name.
@@ -20,6 +17,7 @@ def is_valid_domain(domain):
     # Regular expression pattern to match domain name format
     pattern = r'^((https?:\/\/)?(www\.)?)[a-zA-Z0-9]+([-.][a-zA-Z0-9]+)*\.[a-zA-Z]{2,}(:[0-9]+)?([\/][\w-]+)*\/?$'
     return re.match(pattern, domain) is not None
+
 
 def format_domain(domain=None):
     """
@@ -46,4 +44,3 @@ def format_domain(domain=None):
             continue
 
         return domain
-
