@@ -42,7 +42,7 @@ def save_to_csv(df, filename):
     # Construct the full path to the output file
     filepath = os.path.join(OUTPUT_FOLDER, filename)
     # Save the DataFrame to a CSV file
-    df.to_csv(filepath, index=False)
+    df.to_csv(filepath, index=False, encoding='utf-8')
 
 
 def get_valid_days():
@@ -60,3 +60,24 @@ def get_valid_days():
                 return days
         except ValueError:
             print("Please enter a valid integer.")
+
+
+def get_threshold_percentage():
+    # Loop until a valid threshold percentage is provided by the user
+    while True:
+        threshold_percentage_str = input("Enter the threshold value for cumulative percent (e.g., 40 for 40%): ")
+
+        # Check if the input is numeric
+        if not threshold_percentage_str.replace('.', '', 1).isdigit():  # Check if numeric after removing the decimal point
+            print("Invalid input. Please enter a numeric value.")
+            continue
+
+        # Convert the input to a float
+        threshold_percentage = float(threshold_percentage_str)
+
+        # Check if the input is within the valid range (0 to 100)
+        if 0 <= threshold_percentage <= 100:
+            return threshold_percentage
+        else:
+            print("Invalid input. Please enter a value between 0 and 100.")
+

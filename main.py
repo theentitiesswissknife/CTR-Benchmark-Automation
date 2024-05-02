@@ -1,6 +1,7 @@
 from src.domain_utils import format_domain
 from src.google_search_console import fetch_gsc_data
-from src.utils import save_to_csv, get_valid_days
+from src.utils import save_to_csv, get_valid_days, get_threshold_percentage
+from src.isolated_keywords import filter_keywords
 
 
 # from src.keyword_analysis import process_keywords, fetch_keyword_data, determine_intent
@@ -12,11 +13,14 @@ def main():
     # Step 1: Format the input domain, days
     domain = format_domain()
     days = get_valid_days()
+    threshold_percentage = get_threshold_percentage()
 
     # # Step 2: Fetch data from Google Search Console
     gsc_data = fetch_gsc_data(domain, days)
 
     # # Step 3: Filter and process data from Google Search Console
+    isolated_keywords_df = filter_keywords(gsc_data, threshold_percentage)
+
     # processed_data = process_keywords(gsc_data)
     # save_to_csv(processed_data, 'filtered_keywords.csv')
     #
