@@ -2,6 +2,7 @@ from src.domain_utils import format_domain
 from src.google_search_console import fetch_gsc_data
 from src.utils import save_to_csv, get_valid_days, get_threshold_percentage
 from src.isolated_keywords import filter_keywords
+from src.keyword_everywhere import extract_keyword_data
 
 
 # from src.keyword_analysis import process_keywords, fetch_keyword_data, determine_intent
@@ -21,13 +22,11 @@ def main():
     # # Step 3: Filter and process data from Google Search Console
     isolated_keywords_df = filter_keywords(gsc_data, threshold_percentage)
 
-    # processed_data = process_keywords(gsc_data)
-    # save_to_csv(processed_data, 'filtered_keywords.csv')
-    #
     # # Step 4: Fetch keyword metrics using an Keywords Everywhere API
-    # keyword_metrics = fetch_keyword_data(processed_data)
-    # save_to_csv(keyword_metrics, 'keyword_metrics.csv')
-    #
+    keyword_metrics = extract_keyword_data(isolated_keywords_df)
+
+    print('keyword everywhere data saved')
+
     # # Step 5: Determine keyword intent based on the metrics
     # keyword_intents = determine_intent(keyword_metrics)
     # save_to_csv(keyword_intents, 'keyword_intents.csv')

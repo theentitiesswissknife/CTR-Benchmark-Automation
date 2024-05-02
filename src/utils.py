@@ -30,7 +30,7 @@ def load_credentials(file_path):
         return None
 
 
-def save_to_csv(df, filename):
+def save_to_csv(df: object, filename: object) -> object:
     """
     Saves a DataFrame to a CSV file.
     Args:
