@@ -1,17 +1,20 @@
 from src.domain_utils import format_domain
 from src.google_search_console import fetch_gsc_data
+from src.utils import save_to_csv, get_valid_days
+
+
 # from src.keyword_analysis import process_keywords, fetch_keyword_data, determine_intent
 # from src.title_scraper import scrape_titles
 # from src.serp_analysis import get_serp_data
-# from src.utils import save_to_csv
 
 
 def main():
-    # Step 1: Format the input domain
+    # Step 1: Format the input domain, days
     domain = format_domain()
+    days = get_valid_days()
 
     # # Step 2: Fetch data from Google Search Console
-    gsc_data = fetch_gsc_data(domain)
+    gsc_data = fetch_gsc_data(domain, days)
 
     # # Step 3: Filter and process data from Google Search Console
     # processed_data = process_keywords(gsc_data)

@@ -45,4 +45,18 @@ def save_to_csv(df, filename):
     df.to_csv(filepath, index=False)
 
 
-
+def get_valid_days():
+    """
+    Prompts the user to enter the number of days to fetch data and validates the input.
+    Returns:
+        int: Number of days to fetch data.
+    """
+    while True:
+        try:
+            days = int(input("Enter the number of days to fetch data: "))
+            if days <= 0:
+                print("Please enter a positive integer.")
+            else:
+                return days
+        except ValueError:
+            print("Please enter a valid integer.")

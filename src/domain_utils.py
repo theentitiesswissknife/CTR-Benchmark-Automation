@@ -6,6 +6,9 @@
 import re
 
 
+
+import re
+
 def is_valid_domain(domain):
     """
     Checks if the provided string is a valid domain name.
@@ -15,9 +18,8 @@ def is_valid_domain(domain):
         bool: True if the domain is valid, False otherwise.
     """
     # Regular expression pattern to match domain name format
-    pattern = r'^(https?://)?(www\.)?([a-zA-Z0-9-]+\.){1,}[a-zA-Z]{2,}$'
+    pattern = r'^((https?:\/\/)?(www\.)?)[a-zA-Z0-9]+([-.][a-zA-Z0-9]+)*\.[a-zA-Z]{2,}(:[0-9]+)?([\/][\w-]+)*\/?$'
     return re.match(pattern, domain) is not None
-
 
 def format_domain(domain=None):
     """
@@ -27,18 +29,21 @@ def format_domain(domain=None):
     Returns:
         str: Formatted domain.
     """
-    if domain is None:
-        domain = input("Enter Domain name (with http/https): ")
+    while True:
+        if domain is None:
+            domain = input("Enter Domain name (without http/https): ")
 
-    # Format the domain
-    if not domain.startswith(('http://', 'https://')):
-        domain = 'https://' + domain
-    if not domain.endswith('/'):
-        domain += '/'
+        # Format the domain
+        if not domain.startswith(('http://', 'https://')):
+            domain = 'https://' + domain
+        if not domain.endswith('/'):
+            domain += '/'
 
-    # Validate the domain name
-    while not is_valid_domain(domain):
-        print("Invalid domain name. Please enter a valid domain.")
-        domain = input("Enter Domain name (with http/https): ")
+        # Validate the domain name
+        if not is_valid_domain(domain):
+            print("Invalid domain name. Please enter a valid domain.")
+            domain = None
+            continue
 
-    return domain
+        return domain
+
